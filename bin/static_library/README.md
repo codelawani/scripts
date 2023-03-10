@@ -5,17 +5,16 @@ To copy the files to `0x09-static_libraries`
 2. confirm that you're in the right directory
    ![pwd](./images/pwd.png)
 3. The script `copyto_slib` must be executed while in the directory:  `alx-low_level_programming`
-**It will not work otherwise.**
+~~It will not work otherwise~~.
 4. Copy this code to run the script directly in one step:
-	- Before running:
+	- How it will look once u copy the command into your terminal:
    	- ![curl](./images/curl.png)
----
-```
+> ```
 curl -OL https://raw.githubusercontent.com/angelofdeity/scripts/main/bin/static_library/copyto_slib;chmod +x copyto_slib;bash copyto_slib; rm copyto_slib
 ```
----
-	- After running:
-	- ![after_curl](./images/curl_run.png)
+
+	- How it will look after:
+  	- ![after_curl](./images/curl_run.png)
 5. Final step:
 	Confirm that the files have been copied
 	![ls](./images/ls.png)
