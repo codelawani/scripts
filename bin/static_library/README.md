@@ -15,7 +15,10 @@ To copy the files to `0x09-static_libraries`
 
    - How it will look after:
   	![after_curl](./images/curl_run.png)
-1. Final step:
+5. Final step:
 	Confirm that the files have been copied
 	![ls](./images/ls.png)
+
+Read this article to learn how to build your static library
+[C Static Libraries — What, Why, and How?](https://medium.com/@bdov_/https-medium-com-bdov-c-static-libraries-what-why-and-how-b6b442b054d3)
   
