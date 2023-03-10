@@ -1,5 +1,6 @@
+# Script to Copy all files required into `0x09-static_libraries`
 This script copies all the files required for the static library project into the required folder `0x09-static_libraries`
-# Usage
+## Usage
 To copy the files to `0x09-static_libraries`
 1. navigate to `alx-low_level_programming`
 2. confirm that you're in the right directory
