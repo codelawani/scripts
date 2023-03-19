@@ -1,0 +1,20 @@
+#!/bin/bash
+if [ "$#" -lt 1 ]
+	then
+		echo "oga! wetin u wan cook"
+elif [ "$1" == 'g' ]
+	then
+		git add .
+		git commit -m "update new files"
+		git push
+else
+	echo "cooking Python file:)..."
+	touch "$1"
+	code "$1"
+	echo "#!/usr/bin/python3" > "$1"
+	echo '"""This script"""' >> "$1"
+	chmod u+x "$1"
+	echo "Let's eat,.."
+	git add "$1"
+	git commit -m "add file $1"
+fi
