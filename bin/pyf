@@ -8,13 +8,26 @@ elif [ "$1" == 'g' ]
 		git commit -m "update new files"
 		git push
 else
-	echo "cooking Python file:)..."
-	touch "$1"
-	code "$1"
-	echo "#!/usr/bin/python3" > "$1"
-	echo '"""This script"""' >> "$1"
-	chmod u+x "$1"
-	echo "Let's eat,.."
-	git add "$1"
-	git commit -m "add file $1"
+	if [ -e "$1" ]
+		then
+		echo "Adding content to existing $1"
+		echo "#!/usr/bin/python3" >> "$1"
+		echo '"""This script"""' >> "$1"
+	else
+		echo "cooking Python file:)..."
+		touch "$1"
+		echo "#!/usr/bin/python3" > "$1"
+		echo '"""This script"""' >> "$1"
+		chmod u+x "$1"
+		echo "Let's eat,.."
+		git add "$1"
+		git commit -m "add file $1"
+	fi
+	if [ "$2" == 'v' ]
+	then
+		vim "$1"
+	else
+		code "$1"
+	fi
+	echo "Contents added successfully"
 fi

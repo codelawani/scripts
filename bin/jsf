@@ -8,13 +8,18 @@ elif [ "$1" == 'g' ]
 		git commit -m "update new files"
 		git push
 else
-	echo "cooking JavaScript file:)..."
+	echo "cooking JavaScript file:)... $1"
 	touch "$1"
-	code "$1"
 	echo "#!/usr/bin/node" > "$1"
 	#echo "const av = process.argv;" >> "$1"
 	chmod u+x "$1"
 	echo "Let's eat,.."
 	git add "$1"
 	git commit -m "add file $1"
+	if [ "$2" == 'v' ]
+		then
+			vim "$1"
+	else
+		code "$1"
+	fi
 fi
