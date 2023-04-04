@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Usage: ./alias.sh my_alias
+# This will create an alias for the current directory
+# and add it to your ~/.bash_aliases file
+
+my_alias="$1"
+echo "alias $my_alias='cd $PWD'" >> ~/.bash_aliases
+echo "Done"
+. ~/.bash_aliases

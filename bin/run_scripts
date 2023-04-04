@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+for script in *; do
+  if [ "$script" != "run_scripts" ] && [ -x "$script" ]; then
+    echo "Running script: $script"
+    "./$script"
+    if [ "$?" -ne "0" ]; then
+      echo "Error running script: $script"
+      exit 1
+    fi
+  else
+    echo "Skipping non-executable or root script: $script"
+  fi
+done
+
+echo "All scripts completed successfully"
