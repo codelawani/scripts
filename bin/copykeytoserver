@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# This script adds the public key to the server
+if [ $# -lt 1 ]; then
+    echo "Usage: 0-copykeytoserver SERVER_NAME"
+    exit 1
+fi
+# Define the variables
+if [ "$1" == "1" ]; then
+    web="ubuntu@54.208.84.31"
+elif [ "$1" == "2" ]; then
+    web="ubuntu@54.172.141.180"
+fi
+SSH_KEY="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDNdtrNGtTXe5Tp1EJQop8mOSAuRGLjJ6DW4PqX4wId/Kawz35ESampIqHSOTJmbQ8UlxdJuk0gAXKk3Ncle4safGYqM/VeDK3LN5iAJxf4kcaxNtS3eVxWBE5iF3FbIjOqwxw5Lf5sRa5yXxA8HfWidhbIG5TqKL922hPgsCGABIrXRlfZYeC0FEuPWdr6smOElSVvIXthRWp9cr685KdCI+COxlj1RdVsvIo+zunmLACF9PYdjB2s96Fn0ocD3c5SGLvDOFCyvDojSAOyE70ebIElnskKsDTGwfT4P6jh9OBzTyQEIS2jOaE5RQq4IB4DsMhvbjDSQrP0MdCLgwkN"
+
+# Use the variables in the command
+echo "$SSH_KEY" | ssh "$web" "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
+echo "Key copied to server"
