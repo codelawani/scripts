@@ -1,0 +1,88 @@
+#!/usr/bin/bash
+
+# Check if a filename argument is provided
+if [ -z "$1" ]; then
+    echo "Usage: $0 <file>"
+    exit 1
+fi
+
+# Define the base path
+base_path="/home/nico/Documents/xcode/work/new_essentials/challenges"
+
+# Construct the full path
+path="$base_path/$1"
+
+# Create the directory if it doesn't exist
+mkdir -p "$path" || {
+    echo "Error: Unable to create directory '$path'."
+    exit 1
+}
+
+# Change to the directory and handle errors
+cd "$path" || {
+    echo "Error: Unable to change to directory '$path'."
+    exit 1
+}
+
+# Create challenge.py and handle errors
+touch "challenge.py" || {
+    echo "Error: Unable to create 'challenge.py' in '$path'."
+    exit 1
+}
+
+# Create __init__.py and handle errors
+touch "__init__.py" || {
+    echo "Error: Unable to create '__init__.py' in '$path'."
+    exit 1
+}
+
+# Define the Python code as a string
+read -r -d '' cprinter << EOM
+code_stub_by_language = {}
+solution_by_language = {}
+leetcode_problem_title = ''
+challenge = {}
+explanations_html = {}
+def cprinter():
+    if "code_stub_by_language" in globals():
+        print("code_stub_by_language:")
+        print(code_stub_by_language.keys())
+
+    if "solution_by_language" in globals():
+        print("solution_by_language fields currently available:")
+        print(solution_by_language.keys())
+
+    if "leetcode_problem_title" in globals():
+        print("leetcode_problem_title:", leetcode_problem_title)
+
+    if "challenge" in globals() and "problem_statement" in challenge:
+        print("problem_statement:", challenge["problem_statement"])
+
+    if "explanations_html" in globals():
+        print("explanations_html fields currently available:")
+        print(explanations_html.keys())
+
+    if "solution_by_language" in globals() and "Python3" in solution_by_language:
+        print("solution_by_language['Python3']:")
+        print(solution_by_language["Python3"][:400])
+EOM
+
+# Write the Python code to __init__.py and handle errors
+echo "$cprinter" > "__init__.py" || {
+    echo "Error: Unable to write Python code to '__init__.py' in '$path'."
+    exit 1
+}
+
+# Append an import statement to challenge.py and handle errors
+echo "from . import cprinter" >> "challenge.py" || {
+    echo "Error: Unable to append import statement to 'challenge.py' in '$path'."
+    exit 1
+}
+
+# Copy replace.py from the source location to the new directory
+cp "/home/nico/Documents/xcode/work/new_essentials/challenges/replace.py" "$path/replace.py" || {
+    echo "Error: Unable to copy 'replace.py' to '$path'."
+    exit 1
+}
+
+echo "Directory and files created or updated successfully in '$path'."
