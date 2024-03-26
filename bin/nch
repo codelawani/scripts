@@ -38,11 +38,29 @@ touch "__init__.py" || {
 
 # Define the Python code as a string
 read -r -d '' cprinter << EOM
+from typing import Dict, List, Any
 code_stub_by_language = {}
 solution_by_language = {}
 leetcode_problem_title = ''
 challenge = {}
 explanations_html = {}
+
+challenge: Dict[str, Any] = {
+    "title": str,
+    "problem_statement": str,
+    "penalty": int,
+    "time_limit_in_minutes": int,
+    "max_attempts": int,
+    "hints": List[Any](),
+    "difficulty": str,
+    "key_associations": List[str],
+}
+explanations_html: Dict[str, str] = {
+    'quick': str,
+    'explain_like_im_five_years_old': str,
+    'example_based': str,
+    'thought_process': str
+}
 def cprinter():
     if "code_stub_by_language" in globals():
         print("code_stub_by_language:")
